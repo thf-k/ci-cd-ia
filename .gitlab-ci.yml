@@ -60,4 +60,9 @@ release:
   script:
     - npx --yes release-it --ci
 
-
+e2e-test:
+  stage: test
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  script:
+    - echo "Hello E2E !"
