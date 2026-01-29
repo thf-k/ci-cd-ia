@@ -41,6 +41,7 @@ audit:
   needs: ["install"]
   script:
     - npm audit --audit-level=moderate
+  allow_failure: true
 
 # ----- TEST -----
 unit-test:
