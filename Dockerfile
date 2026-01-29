@@ -4,7 +4,8 @@ WORKDIR /app
 
 # deps d'abord (meilleur cache)
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN npm ci --omit=dev --ignore-scripts
+
 
 # code ensuite
 COPY . .
