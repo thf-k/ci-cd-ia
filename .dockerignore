@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.git
+.gitlab
+.gitlab-ci.yml
+Dockerfile
+README.md
+.vscode
+.husky
