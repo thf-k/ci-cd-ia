@@ -8,7 +8,6 @@ export default function App() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // l'URL de l'API : en dev on utilise un proxy Vite (étape 2)
   const apiBase = useMemo(() => "", []);
 
   async function send() {
@@ -36,7 +35,7 @@ export default function App() {
     } catch (e) {
       setMessages((m) => [
         ...m,
-        { role: "assistant", content: `❌ ${String(e.message || e)}` },
+        { role: "assistant", content: `${String(e.message || e)}` },
       ]);
     } finally {
       setLoading(false);
