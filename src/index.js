@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const auth = require("./modules/authentication");
 const { createClient: realCreateClient } = require("./modules/genai");
 
@@ -6,9 +7,8 @@ function makeApp({ createClient = realCreateClient } = {}) {
   const app = express();
   app.use(express.json());
 
-  app.get("/", (req, res) => {
-    res.send("Hello World!");
-  });
+  const distPath = path.join(__dirname, "..", "frontend", "dist");
+  app.use(express.static(distPath));
 
   app.get("/auth/:secret", (req, res) => {
     const { secret } = req.params;
@@ -35,6 +35,11 @@ function makeApp({ createClient = realCreateClient } = {}) {
     } catch (e) {
       res.status(500).json({ error: String(e?.message || e) });
     }
+  });
+
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
   });
 
   return app;
